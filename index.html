@@ -1,37 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Coinsmith — Simple Idle Game</title>
+  <title>Coinsmith — Enhanced Idle Game</title>
   <style>
-    :root{--bg:#0f1724;--card:#0b1220;--accent:#ffd166;--muted:#9aa4b2}
+    :root{--bg:#0d1117;--card:#161b22;--accent:#facc15;--muted:#9ca3af;--btn:#2563eb;--btn-hover:#1d4ed8}
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background:linear-gradient(180deg,#071022 0%, #0f1724 100%);color:#e6eef6;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px}
-    .app{width:980px;max-width:100%;display:grid;grid-template-columns:1fr 360px;gap:20px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);padding:18px;border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.6)}
-    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-    h1{font-size:20px;margin:0}
-    .subtitle{color:var(--muted);font-size:12px}
-    .big-row{display:flex;gap:12px}
-    .main{padding:18px;min-height:340px}
-    .resource{font-size:36px;font-weight:700;color:var(--accent)}
-    .click-btn{margin-top:18px;background:linear-gradient(180deg,#ffd166,#ffb347);border:none;padding:18px;border-radius:10px;font-weight:700;font-size:18px;width:100%;cursor:pointer;box-shadow:0 6px 18px rgba(255,177,71,0.25)}
-    .click-btn:active{transform:translateY(2px)}
-    .producers{display:grid;gap:10px;margin-top:18px}
-    .producer{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.01)}
-    .producer h3{margin:0;font-size:14px}
+    body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;background:linear-gradient(180deg,#0d1117,#111827);color:#e5e7eb;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .app{width:1100px;max-width:100%;display:grid;grid-template-columns:1fr 360px;gap:20px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,0.08);padding:18px;border-radius:14px;box-shadow:0 6px 30px rgba(0,0,0,0.5)}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+    h1{font-size:24px;margin:0;color:var(--accent)}
+    .subtitle{color:var(--muted);font-size:13px}
+    .main{padding:18px;min-height:400px}
+    .resource{font-size:40px;font-weight:800;color:var(--accent);text-shadow:0 0 6px rgba(250,204,21,0.5)}
+    .click-btn{margin-top:18px;background:linear-gradient(180deg,var(--btn),var(--btn-hover));border:none;padding:18px;border-radius:10px;font-weight:700;font-size:18px;width:100%;cursor:pointer;color:#fff;box-shadow:0 6px 18px rgba(37,99,235,0.4);transition:transform 0.1s}
+    .click-btn:hover{transform:scale(1.05)}
+    .click-btn:active{transform:scale(0.96)}
+    .producers{display:grid;gap:12px;margin-top:18px}
+    .producer{display:flex;justify-content:space-between;align-items:center;padding:14px;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);transition:background 0.2s}
+    .producer:hover{background:rgba(255,255,255,0.06)}
+    .producer h3{margin:0;font-size:15px;color:#fff}
     .producer small{color:var(--muted)}
-    .buy-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:8px;cursor:pointer}
+    .buy-btn{background:var(--accent);border:none;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;color:#111}
+    .buy-btn:hover{opacity:0.9}
     .panel{padding:18px}
-    .stat{display:flex;justify-content:space-between;color:var(--muted);margin-bottom:8px}
-    .upgrades{margin-top:12px}
-    .upgrade{padding:10px;border-radius:8px;background:rgba(255,255,255,0.01);display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-    .footer{display:flex;justify-content:space-between;align-items:center;margin-top:14px;color:var(--muted);font-size:13px}
-    .small{font-size:12px;color:var(--muted)}
-    .prestige{background:#1f2937;border:1px solid rgba(255,255,255,0.03);padding:10px;border-radius:8px;margin-top:12px}
-    .flex{display:flex;gap:8px}
-    @media(max-width:880px){.app{grid-template-columns:1fr;}.panel{order:2}}
+    .stat{display:flex;justify-content:space-between;color:var(--muted);margin-bottom:10px;font-size:14px}
+    .upgrades{margin-top:14px}
+    .upgrade{padding:12px;border-radius:10px;background:rgba(255,255,255,0.04);display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border:1px solid rgba(255,255,255,0.06)}
+    .upgrade div{color:#fff}
+    .footer{display:flex;justify-content:space-between;align-items:center;margin-top:16px;color:var(--muted);font-size:14px}
+    .prestige{background:#1f2937;border:1px solid rgba(255,255,255,0.08);padding:12px;border-radius:10px;margin-top:16px}
+    .prestige strong{color:var(--accent)}
+    .flex{display:flex;gap:10px}
+    @media(max-width:960px){.app{grid-template-columns:1fr;}.panel{order:2}}
   </style>
 </head>
 <body>
@@ -40,27 +43,27 @@
       <header>
         <div>
           <h1>Coinsmith</h1>
-          <div class="subtitle">Click coins, hire producers, and get rich!</div>
+          <div class="subtitle">Click coins, hire producers, unlock upgrades, and prestige!</div>
         </div>
-        <div class="small">v1.0 • Auto-save</div>
+        <div class="subtitle">v2.0 • Auto-save</div>
       </header>
 
       <div>
         <div class="resource" id="coins">0</div>
-        <div class="small">Coins</div>
+        <div class="subtitle">Coins</div>
         <button id="clickBtn" class="click-btn">Mine +1</button>
       </div>
 
       <div class="producers" id="producers"></div>
 
       <div class="footer">
-        <div class="small">CPS: <span id="cps">0</span></div>
-        <div class="small">Clicks: <span id="clicks">0</span></div>
+        <div>CPS: <span id="cps">0</span></div>
+        <div>Clicks: <span id="clicks">0</span></div>
       </div>
     </div>
 
     <div class="card panel">
-      <h3>Upgrades & Stats</h3>
+      <h3 style="margin:0 0 10px;color:#fff">Upgrades & Stats</h3>
       <div class="stat"><div>Coins/sec</div><div id="statCPS">0</div></div>
       <div class="stat"><div>Best coins</div><div id="bestCoins">0</div></div>
       <div class="stat"><div>Play time</div><div id="playTime">0s</div></div>
@@ -68,24 +71,23 @@
       <div class="upgrades" id="upgrades"></div>
 
       <div class="prestige">
-        <div style="font-weight:700">Prestige</div>
-        <div class="small">Reset for Golden Ingots — increase coin gain multiplier</div>
+        <strong>Prestige</strong>
+        <div class="subtitle">Reset for Golden Ingots — boosts your income</div>
         <div style="margin-top:8px" class="flex">
           <button id="prestigeBtn" class="buy-btn">Prestige</button>
-          <div style="align-self:center" id="prestigeInfo" class="small">0 ingots</div>
+          <div style="align-self:center" id="prestigeInfo" class="subtitle">0 ingots</div>
         </div>
       </div>
 
-      <div style="margin-top:12px" class="flex">
+      <div style="margin-top:14px" class="flex">
         <button id="saveBtn" class="buy-btn">Save</button>
         <button id="loadBtn" class="buy-btn">Load</button>
-        <button id="resetBtn" class="buy-btn">Hard Reset</button>
+        <button id="resetBtn" class="buy-btn" style="background:#ef4444;color:#fff">Hard Reset</button>
       </div>
     </div>
   </div>
 
   <script>
-    // --- Game state ---
     const state = {
       coins: 0,
       totalCoins: 0,
@@ -95,23 +97,24 @@
       bestCoins: 0,
       prestige: 0,
       producers: [
-        { id: 'hand', name: 'Miner', baseCost: 15, qty: 0, baseCps: 0.1 },
-        { id: 'drill', name: 'Drill', baseCost: 120, qty: 0, baseCps: 1 },
-        { id: 'factory', name: 'Factory', baseCost: 1500, qty: 0, baseCps: 10 }
+        { id: 'miner', name: 'Miner', baseCost: 15, qty: 0, baseCps: 0.2 },
+        { id: 'drill', name: 'Drill', baseCost: 100, qty: 0, baseCps: 1 },
+        { id: 'factory', name: 'Factory', baseCost: 1200, qty: 0, baseCps: 12 },
+        { id: 'city', name: 'Mining City', baseCost: 15000, qty: 0, baseCps: 120 }
       ],
       upgrades: [
-        { id: 'click2', name: 'Power Pick', desc: '+1 click value', cost: 100, bought: false, apply(s){ s.clickValue = (s.clickValue||1)+1 }},
-        { id: 'prodBoost', name: 'Improved Gears', desc: 'Producers +20% output', cost: 1000, bought:false }
+        { id: 'click2', name: 'Power Pick', desc: '+1 per click', cost: 100, bought: false, apply(s){ s.clickValue = (s.clickValue||1)+1 }},
+        { id: 'click3', name: 'Diamond Pick', desc: '+5 per click', cost: 500, bought: false, apply(s){ s.clickValue += 5 }},
+        { id: 'prodBoost', name: 'Efficient Gears', desc: 'Producers +25%', cost: 1500, bought:false },
+        { id: 'megaBoost', name: 'AI Automation', desc: 'All output x2', cost: 10000, bought:false }
       ],
       clickValue: 1,
       lastTick: Date.now()
     }
 
-    // --- Helpers ---
     const $ = id => document.getElementById(id)
     function format(n){ return Math.floor(n).toLocaleString() }
 
-    // --- Build UI ---
     const producersEl = $('producers')
     const upgradesEl = $('upgrades')
 
@@ -121,10 +124,10 @@
         const div = document.createElement('div')
         div.className = 'producer'
         div.innerHTML = `<div>
-            <h3>${p.name} <small style="display:block;color:var(--muted)">x${p.qty} • ${ (p.baseCps * p.qty).toFixed(1) } cps</small></h3>
+            <h3>${p.name} <small>x${p.qty} • ${(p.baseCps * p.qty).toFixed(1)} cps</small></h3>
           </div>
           <div>
-            <div class="small">${format(costFor(p))} coins</div>
+            <div class="subtitle">${format(costFor(p))} coins</div>
             <button class="buy-btn" data-id="${p.id}">Buy</button>
           </div>`
         producersEl.appendChild(div)
@@ -141,32 +144,24 @@
             <small>${u.desc}</small>
           </div>
           <div>
-            <div class="small">${format(u.cost)}</div>
+            <div class="subtitle">${format(u.cost)}</div>
             <button class="buy-btn" data-upgrade="${u.id}" ${u.bought? 'disabled' : ''}>${u.bought? 'Owned' : 'Buy'}</button>
           </div>`
         upgradesEl.appendChild(div)
       })
     }
 
-    function costFor(p){
-      // exponential price scaling
-      return Math.floor(p.baseCost * Math.pow(1.15, p.qty))
-    }
+    function costFor(p){ return Math.floor(p.baseCost * Math.pow(1.15, p.qty)) }
 
     function totalCps(){
       let total = 0
-      state.producers.forEach(p=>{
-        let base = p.baseCps * p.qty
-        total += base
-      })
-      // upgrade buffs
-      if(state.upgrades.find(u=>u.id==='prodBoost'&&u.bought)) total *= 1.2
-      // prestige multiplier
-      total *= (1 + state.prestige * 0.05)
+      state.producers.forEach(p=> total += p.baseCps * p.qty)
+      if(state.upgrades.find(u=>u.id==='prodBoost'&&u.bought)) total *= 1.25
+      if(state.upgrades.find(u=>u.id==='megaBoost'&&u.bought)) total *= 2
+      total *= (1 + state.prestige * 0.1)
       return total
     }
 
-    // --- Interaction ---
     $('clickBtn').addEventListener('click',()=>{ state.coins += state.clickValue; state.totalCoins += state.clickValue; state.clicks++; pulse(); updateUI() })
 
     producersEl.addEventListener('click', e=>{
@@ -181,18 +176,15 @@
       const uid = e.target.dataset.upgrade
       if(!uid) return
       const u = state.upgrades.find(x=>x.id===uid)
-      if(state.coins >= u.cost && !u.bought){ state.coins -= u.cost; u.bought = true; if(u.apply) u.apply(state); updateUI(); buildUpgrades() }
+      if(state.coins >= u.cost && !u.bought){ state.coins -= u.cost; u.bought = true; if(u.apply) u.apply(state); buildUpgrades(); updateUI() }
     })
 
     $('prestigeBtn').addEventListener('click', ()=>{
-      const potential = Math.floor(Math.sqrt(state.totalCoins/1000))
-      if(potential <= state.prestige){ alert('Not enough total coins to gain more ingots.'); return }
-      if(!confirm(`Prestige will reset your coins and purchases\nGain ${potential - state.prestige} golden ingots?`)) return
+      const potential = Math.floor(Math.sqrt(state.totalCoins/2000))
+      if(potential <= state.prestige){ alert('Not enough coins to prestige.'); return }
+      if(!confirm(`Prestige will reset your progress. Gain ${potential - state.prestige} golden ingots.`)) return
       state.prestige = potential
-      // reset
-      state.coins = 0
-      state.totalCoins = 0
-      state.clickValue = 1
+      state.coins = 0; state.totalCoins = 0; state.clickValue = 1
       state.producers.forEach(p=>p.qty=0)
       state.upgrades.forEach(u=>u.bought=false)
       buildProducers(); buildUpgrades(); updateUI()
@@ -200,12 +192,10 @@
 
     $('saveBtn').addEventListener('click', saveGame)
     $('loadBtn').addEventListener('click', loadGame)
-    $('resetBtn').addEventListener('click', ()=>{ if(confirm('Hard reset? This will clear save and prestige.')){ localStorage.removeItem('coin_save'); location.reload() } })
+    $('resetBtn').addEventListener('click', ()=>{ if(confirm('Hard reset?')){ localStorage.removeItem('coin_save'); location.reload() } })
 
-    // keyboard: space to mine
     window.addEventListener('keydown', e=>{ if(e.code==='Space'){ e.preventDefault(); $('clickBtn').click() } })
 
-    // --- Game loop ---
     function tick(){
       const now = Date.now()
       const dt = (now - state.lastTick)/1000
@@ -227,45 +217,24 @@
       $('bestCoins').textContent = format(state.bestCoins)
       $('playTime').textContent = Math.floor(state.playSeconds)+'s'
       $('prestigeInfo').textContent = state.prestige + ' ingots'
-      // update producer list live
       buildProducers()
     }
 
     function pulse(){
-      const btn = $('clickBtn')
-      btn.animate([{transform:'scale(1)'},{transform:'scale(0.96)'},{transform:'scale(1)'}],{duration:180,iterations:1})
+      $('clickBtn').animate([{transform:'scale(1)'},{transform:'scale(0.92)'},{transform:'scale(1)'}],{duration:180,iterations:1})
     }
 
-    // --- Persistence ---
-    function saveGame(){
-      const s = JSON.stringify(state)
-      localStorage.setItem('coin_save', s)
-      alert('Game saved')
-    }
+    function saveGame(){ localStorage.setItem('coin_save', JSON.stringify(state)); alert('Game saved') }
     function loadGame(){
       const s = localStorage.getItem('coin_save')
-      if(!s){ alert('No save found') ; return }
-      try{ const obj = JSON.parse(s)
-        // merge carefully
-        Object.assign(state, obj)
-        // ensure methods / defaults
-        state.lastTick = Date.now()
-        buildProducers(); buildUpgrades(); updateUI()
-        alert('Save loaded')
-      }catch(e){ alert('Failed to load save') }
+      if(!s){ alert('No save found'); return }
+      try{ Object.assign(state, JSON.parse(s)); state.lastTick = Date.now(); buildProducers(); buildUpgrades(); updateUI(); alert('Save loaded') }catch(e){ alert('Failed to load save') }
     }
 
-    // auto-save every 20s
     setInterval(()=>{ localStorage.setItem('coin_save', JSON.stringify(state)) }, 20000)
-
-    // start
-    buildProducers(); buildUpgrades(); updateUI();
-    state.lastTick = Date.now()
+    buildProducers(); buildUpgrades(); updateUI(); state.lastTick = Date.now()
     setInterval(tick, 100)
-
-    // quick load if save exists
     if(localStorage.getItem('coin_save')) loadGame()
-
   </script>
 </body>
 </html>
